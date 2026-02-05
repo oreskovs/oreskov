@@ -1,10 +1,24 @@
 "use client";
 import { Github, Mail, Linkedin, Instagram, MapPin, ArrowUpRight, ChevronDown, Code2, Smartphone, Terminal, Globe } from "lucide-react";
-import { motion,useMotionValue } from "framer-motion";
-import { useEffect } from "react";
+import { motion,useMotionValue, useScroll, useSpring } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { Typewriter } from "react-simple-typewriter";
 
 export default function Home() {
+
+  const containerRef = useRef(null);
+  
+  // Креирање на прогрес за линијата
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end center"]
+  });
+
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -17,6 +31,28 @@ export default function Home() {
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [mouseX, mouseY]);
+
+  const education = [
+  {
+    year: "2022 - Present",
+    title: "BSc in Software Technologies",
+    institution: "International Slavic University – Bitola",
+    description: "Currently finalizing the degree with a focus on modern software engineering practices. Completing the final thesis project.",
+    status: "Finalizing Thesis"
+  },
+  {
+    year: "2018 - 2022",
+    title: "Economic Technician",
+    institution: "Gymnasium 'Dobri Daskalov' – Kavadarci",
+    description: "Developed a strong foundation in economics, organizational logic, and analytical thinking, providing a unique business perspective to my technical skills.",
+  },
+  {
+    year: "2009 - 2018",
+    title: "Primary Education",
+    institution: "OU 'Straso Pindzur' – Kavadarci",
+    description: "The beginning of my academic journey, where I first discovered my interest in technology and logical problem-solving.",
+  }
+];
 
   const fadeInUp = {
     initial: { opacity: 0, y: 20 },
@@ -215,7 +251,6 @@ export default function Home() {
           </pre>
         </motion.div>
       </div>
-
       </section>
 
     {/* TECH STACK - SECTION */}
@@ -282,67 +317,91 @@ export default function Home() {
         </div>
       </div>
     </section>
-
-
-    {/* PROJECTS SECTION */}
-    <section id="projects" className="py-32 bg-[#050505] scroll-mt-20">
-        <div className="max-w-7xl mx-auto px-6 md:px-24">
+    
+    {/* EDUCATION SECTION */}
+    <section id="journey" ref={containerRef} className="py-32 bg-[#050505] relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 md:px-24 relative z-10">
           
-          <div className="mb-24">
-            <h2 className="text-[10px] uppercase tracking-[0.5em] text-blue-600 font-black mb-4">Works</h2>
-            <h3 className="text-5xl md:text-7xl font-bold tracking-tighter"><span className="italic">Projects</span></h3>
+          <div className="mb-24 text-center">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-[10px] uppercase tracking-[0.5em] text-blue-600 font-black mb-4"
+            >
+              Academic Background
+            </motion.h2>
+            <motion.h3 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-5xl md:text-7xl font-bold tracking-tighter"
+            >
+              Education<span className="text-blue-600">.</span>
+            </motion.h3>
           </div>
 
-          <div className="flex flex-col">
-            {projects.map((project, index) => (
-              <a 
-                key={project.id}
-                href={project.link}
-                target="_blank"
-                className="group relative border-t border-gray-900 py-12 flex flex-col md:flex-row md:items-center justify-between transition-all duration-500 hover:px-8"
-              >
-                <div className="absolute inset-0 bg-blue-600 opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500 -z-10"></div>
+          <div className="relative max-w-4xl mx-auto">
+            <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-px h-full bg-gray-900"></div>
+            
+            <motion.div 
+              style={{ scaleY, originY: 0 }}
+              className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-px h-full bg-blue-600 z-10"
+            ></motion.div>
 
-                <div className="flex items-center gap-8 md:gap-16">
-                  <span className="text-xs font-mono text-gray-700 group-hover:text-blue-500 transition-colors">
-                    0{index + 1}
-                  </span>
-                  <div className="space-y-2">
-                    <h3 className="text-4xl md:text-6xl font-bold tracking-tight text-white group-hover:italic group-hover:translate-x-4 transition-all duration-500">
-                      {project.title}
-                    </h3>
-                    <div className="flex gap-4 items-center">
-                      <span className="text-[10px] uppercase tracking-widest text-gray-500">{project.category}</span>
-                      <div className="h-px w-8 bg-gray-800"></div>
-                      <div className="flex gap-2">
-                        {project.tech.slice(0, 3).map(t => (
-                          <span key={t} className="text-[9px] text-blue-500 font-bold opacity-0 group-hover:opacity-100 transition-opacity">{t}</span>
-                        ))}
+            <div className="space-y-32">
+              {education.map((item, index) => (
+                <motion.div 
+                  key={index}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  className={`relative flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center`}
+                >
+                  <div className="absolute left-0 md:left-1/2 transform -translate-x-1/2 z-20">
+                    <motion.div 
+                       whileInView={{ scale: [0, 1.2, 1] }}
+                       className="w-4 h-4 rounded-full bg-[#050505] border-2 border-blue-600 flex items-center justify-center"
+                    >
+                      <div className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></div>
+                    </motion.div>
+                  </div>
+
+                  <div className={`w-full md:w-1/2 ${index % 2 === 0 ? 'md:pr-20 md:text-right' : 'md:pl-20 md:text-left'} pl-10 md:pl-0 group`}>
+                    <motion.div 
+                      whileHover={{ x: index % 2 === 0 ? -10 : 10 }}
+                      className="p-6 rounded-3xl border border-transparent hover:border-white/5 hover:bg-white/2 transition-all duration-500"
+                    >
+                      <div className={`inline-block px-3 py-1 rounded-full border border-blue-500/20 bg-blue-500/5 text-[10px] font-mono text-blue-500 mb-6`}>
+                        {item.year}
                       </div>
-                    </div>
+                      
+                      <h4 className="text-2xl md:text-4xl font-bold text-white tracking-tight group-hover:text-blue-500 transition-colors">
+                        {item.title}
+                      </h4>
+                      <p className="text-gray-400 font-bold text-xs mt-2 uppercase tracking-widest italic opacity-80">
+                        {item.institution}
+                      </p>
+                      
+                      {item.status && (
+                        <div className={`mt-4 flex items-center gap-2 ${index % 2 === 0 ? 'justify-start md:justify-end' : 'justify-start'}`}>
+                          <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+                          </span>
+                          <span className="text-[10px] text-amber-500 font-black uppercase tracking-widest">{item.status}</span>
+                        </div>
+                      )}
+
+                      <p className="text-gray-500 text-sm mt-6 leading-relaxed font-light group-hover:text-gray-400 transition-colors">
+                        {item.description}
+                      </p>
+                    </motion.div>
                   </div>
-                </div>
 
-                <div className="mt-8 md:mt-0 flex items-center gap-6">
-                  <p className="hidden lg:block text-gray-600 text-sm max-w-50 text-right opacity-0 group-hover:opacity-100 transition-opacity duration-500 font-light italic">
-                    {project.description.substring(0, 60)}...
-                  </p>
-                  <div className="w-16 h-16 rounded-full border border-gray-900 flex items-center justify-center group-hover:border-blue-600 group-hover:bg-blue-600 transition-all duration-500 transform group-hover:rotate-45">
-                    <ArrowUpRight size={24} className="text-gray-700 group-hover:text-white" />
-                  </div>
-                </div>
-
-                <div className="absolute bottom-0 left-0 h-px w-0 bg-blue-600 transition-all duration-700 group-hover:w-full"></div>
-              </a>
-            ))}
-            <div className="border-t border-gray-900"></div>
-          </div>
-
-          <div className="mt-20 flex justify-center">
-            <a href="https://github.com/oreskovs" className="group flex items-center gap-3 text-[10px] uppercase tracking-[0.4em] font-black text-gray-600 hover:text-white transition-colors">
-              See more on GitHub
-              <Github size={16} className="group-hover:text-blue-500 transition-colors" />
-            </a>
+                  <div className="hidden md:block w-1/2"></div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
     </section>
