@@ -76,7 +76,6 @@ export default function Home() {
     {/* HERO SECTION */}
     <section className="min-h-screen w-full relative flex flex-col items-center justify-center overflow-hidden px-6">
         
-        {/* SPOTLIGHT BACKGROUND */}
         <motion.div
           className="pointer-events-none absolute inset-0 z-0 opacity-30"
           style={{
@@ -84,28 +83,60 @@ export default function Home() {
           }}
         />
 
-        {/* NAV BAR */}
-        <nav className="absolute top-6 w-full max-w-7xl px-4 z-50">
-          <div className="bg-[#0a0a0a]/60 backdrop-blur-xl border border-white/5 px-6 py-4 rounded-3xl flex justify-between items-center shadow-2xl">
-            <div className="flex flex-col">
-              <span className="text-xs font-black tracking-[0.2em] text-white uppercase">Stojance Oreskov</span>
-              <div className="flex items-center gap-1.5 mt-1.5">
-                <span className="relative flex h-1.5 w-1.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
-                </span>
-                <span className="text-[9px] text-gray-500 font-bold uppercase tracking-widest">Available for hire</span>
+        <nav className="fixed top-0 left-0 w-full px-6 py-8 z-100 pointer-events-none">
+          <div className="max-w-450 mx-auto flex justify-between items-start pointer-events-auto">
+            
+            <motion.div 
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              className="flex flex-col gap-4"
+            >
+              <div className="group flex items-center gap-4 cursor-pointer" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
+                <div className="flex flex-col">
+                  <span className="text-xs font-bold tracking-[0.3em] uppercase">Stojance</span>
+                  <span className="text-[10px] text-gray-500 font-medium tracking-[0.2em] uppercase">Oreskov</span>
+                </div>
               </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <a href="https://github.com/oreskovs" target="_blank" className="text-gray-400 hover:text-white transition-transform hover:scale-110"><Github size={18} /></a>
-              <a href="https://linkedin.com/in/stojance-oreskov-b2a165356/" target="_blank" className="text-gray-400 hover:text-white transition-transform hover:scale-110"><Linkedin size={18} /></a>
-              <a href="mailto:oreskov.stojance1@gmail.com" className="ml-2 px-4 py-2 rounded-xl bg-white text-black text-[10px] font-black uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all">Contact</a>
-            </div>
+
+              <div className="px-4 py-2 bg-white/3 backdrop-blur-md border border-white/5 rounded-full flex items-center gap-2 w-fit">
+                <span className="h-1 w-1 rounded-full bg-green-500 animate-pulse"></span>
+                <span className="text-[8px] uppercase tracking-widest text-gray-400">Available</span>
+              </div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ x: 20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              className="flex flex-col items-end gap-6"
+            >
+              <div className="bg-black/20 backdrop-blur-2xl border border-white/5 p-2 rounded-2xl flex flex-col gap-1 shadow-2xl">
+                {[
+                  { id: 'projects', icon: <Code2 size={16} /> },
+                  { id: 'contact', icon: <Mail size={16} /> }
+                ].map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => document.getElementById(item.id)?.scrollIntoView({ behavior: 'smooth' })}
+                    className="w-10 h-10 flex items-center justify-center rounded-xl text-gray-500 hover:text-white hover:bg-white/5 transition-all group relative"
+                  >
+                    {item.icon}
+                    <span className="absolute right-14 px-2 py-1 rounded bg-blue-600 text-[8px] font-bold text-white uppercase tracking-tighter opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                      {item.id}
+                    </span>
+                  </button>
+                ))}
+              </div>
+
+              <div className="flex flex-col gap-4 pr-3 items-center">
+                <div className="h-10 w-px bg-linear-to-b from-transparent to-white/10"></div>
+                <a href="https://github.com/oreskovs" target="_blank" className="text-gray-500 hover:text-blue-500 transition-colors"><Github size={16} /></a>
+                <a href="https://linkedin.com/in/stojance-oreskov-b2a165356/" target="_blank" className="text-gray-500 hover:text-blue-500 transition-colors"><Linkedin size={16} /></a>
+              </div>
+            </motion.div>
+
           </div>
         </nav>
 
-        {/* HERO CONTENT */}
         <div className="relative z-10 max-w-4xl w-full text-center space-y-12">
           
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
@@ -120,7 +151,7 @@ export default function Home() {
               <span className="text-blue-500">
                 <Typewriter
                   words={['Web', 'Mobile', 'Fullstack', 'Next-Gen']}
-                  loop={0} // 0 значи бесконечно
+                  loop={0} 
                   cursor
                   cursorStyle="_"
                   typeSpeed={70}
@@ -132,7 +163,7 @@ export default function Home() {
               Developer<span className="text-blue-600">.</span>
             </h1>
             <p className="text-gray-400 text-lg md:text-xl max-w-xl mx-auto font-light leading-relaxed">
-              I architect high-performance digital solutions with <span className="text-white italic">Next.js</span> and <span className="text-white italic">Flutter</span>.
+              Specializing in high-performance <span className="text-white italic">Fullstack</span> ecosystems, turning bold ideas into seamless  <span className="text-white italic">Web and Mobile</span> experiences.
             </p>
           </div>
 
@@ -154,26 +185,36 @@ export default function Home() {
           </motion.div>
         </div>
 
-        {/* FLOATING CARDS */}
         <div className="hidden lg:block">
           <motion.div 
-            animate={{ y: [0, -15, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-[35%] left-[8%] p-6 bg-[#0a0a0a]/40 backdrop-blur-xl border border-white/5 rounded-3xl w-56 rotate-6"
-          >
-            <Globe className="text-blue-500 mb-2" size={24} />
-            <h3 className="font-bold text-xs text-white uppercase">Web Apps</h3>
-          </motion.div>
+          animate={{ y: [0, -10, 0], opacity: [0.4, 0.7, 0.4] }}
+          transition={{ duration: 5, repeat: Infinity }}
+          className="absolute top-[30%] left-[10%] font-mono text-[10px] text-blue-500/60 pointer-events-none hidden lg:block"
+        >
+          <pre>
+            {`<html>
+          <body class="modern-web">
+            <div id="stojance" />
+          </body>
+        </html>`}
+          </pre>
+        </motion.div>
 
-          <motion.div 
-             animate={{ y: [0, 15, 0] }}
-             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-             className="absolute top-[40%] right-[8%] p-6 bg-[#0a0a0a]/40 backdrop-blur-xl border border-white/5 rounded-3xl w-56 rotate-6"
-          >
-            <Smartphone className="text-blue-500 mb-2" size={24} />
-            <h3 className="font-bold text-xs text-white uppercase">Mobile Apps</h3>
-          </motion.div>
-        </div>
+        <motion.div 
+          animate={{ y: [0, 10, 0], opacity: [0.4, 0.7, 0.4] }}
+          transition={{ duration: 6, repeat: Infinity, delay: 1 }}
+          className="absolute top-[45%] right-[10%] font-mono text-[10px] text-blue-400/60 pointer-events-none hidden lg:block text-right"
+        >
+          <pre>
+            {`class MobileApp extends StatelessWidget {
+          @override
+          Widget build(BuildContext context) {
+            return FlutterApp();
+          }
+        }`}
+          </pre>
+        </motion.div>
+      </div>
 
       </section>
 
@@ -243,17 +284,15 @@ export default function Home() {
     </section>
 
 
-      {/* PROJECTS SECTION */}
+    {/* PROJECTS SECTION */}
     <section id="projects" className="py-32 bg-[#050505] scroll-mt-20">
         <div className="max-w-7xl mx-auto px-6 md:px-24">
           
-          {/* Header */}
           <div className="mb-24">
             <h2 className="text-[10px] uppercase tracking-[0.5em] text-blue-600 font-black mb-4">Works</h2>
             <h3 className="text-5xl md:text-7xl font-bold tracking-tighter"><span className="italic">Projects</span></h3>
           </div>
 
-          {/* List Container */}
           <div className="flex flex-col">
             {projects.map((project, index) => (
               <a 
@@ -262,10 +301,8 @@ export default function Home() {
                 target="_blank"
                 className="group relative border-t border-gray-900 py-12 flex flex-col md:flex-row md:items-center justify-between transition-all duration-500 hover:px-8"
               >
-                {/* Background Highlight on Hover */}
                 <div className="absolute inset-0 bg-blue-600 opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500 -z-10"></div>
 
-                {/* Left Side: Number and Title */}
                 <div className="flex items-center gap-8 md:gap-16">
                   <span className="text-xs font-mono text-gray-700 group-hover:text-blue-500 transition-colors">
                     0{index + 1}
@@ -286,7 +323,6 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Right Side: Icon & Arrow */}
                 <div className="mt-8 md:mt-0 flex items-center gap-6">
                   <p className="hidden lg:block text-gray-600 text-sm max-w-50 text-right opacity-0 group-hover:opacity-100 transition-opacity duration-500 font-light italic">
                     {project.description.substring(0, 60)}...
@@ -296,14 +332,12 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Суптилен ефект на линијата на дното */}
                 <div className="absolute bottom-0 left-0 h-px w-0 bg-blue-600 transition-all duration-700 group-hover:w-full"></div>
               </a>
             ))}
             <div className="border-t border-gray-900"></div>
           </div>
 
-          {/* Bottom CTA */}
           <div className="mt-20 flex justify-center">
             <a href="https://github.com/oreskovs" className="group flex items-center gap-3 text-[10px] uppercase tracking-[0.4em] font-black text-gray-600 hover:text-white transition-colors">
               See more on GitHub
@@ -315,7 +349,6 @@ export default function Home() {
 
     {/* 3. CONTACT SECTION */}
     <section id="contact" className="py-32 px-6 bg-[#050505] relative overflow-hidden">
-        {/* Декоративен круг во позадина */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 bg-blue-600/10 blur-[120px] rounded-full pointer-events-none" />
 
         <div className="max-w-4xl mx-auto relative z-10">
@@ -340,7 +373,6 @@ export default function Home() {
           >
             <form action="https://formspree.io/f/tvojot-id-tuka" method="POST" className="space-y-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Име */}
                 <div className="space-y-2">
                   <label className="text-[10px] uppercase tracking-widest text-gray-500 font-bold ml-1">Your Name</label>
                   <input 
@@ -351,7 +383,6 @@ export default function Home() {
                     className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-gray-700 focus:outline-none focus:border-blue-500/50 transition-all"
                   />
                 </div>
-                {/* Емаил */}
                 <div className="space-y-2">
                   <label className="text-[10px] uppercase tracking-widest text-gray-500 font-bold ml-1">Email Address</label>
                   <input 
@@ -364,7 +395,6 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Порака */}
               <div className="space-y-2">
                 <label className="text-[10px] uppercase tracking-widest text-gray-500 font-bold ml-1">Message</label>
                 <textarea 
@@ -376,7 +406,6 @@ export default function Home() {
                 />
               </div>
 
-              {/* Копче за праќање */}
               <button 
                 type="submit"
                 className="w-full group relative py-5 overflow-hidden rounded-2xl bg-white text-black font-black text-xs uppercase tracking-[0.2em] transition-all hover:scale-[1.02]"
@@ -389,7 +418,6 @@ export default function Home() {
             </form>
           </motion.div>
 
-          {/* Footer Info */}
           <div className="mt-16 flex flex-col md:flex-row items-center justify-between gap-8 opacity-40">
             <div className="flex items-center gap-2">
               <Mail size={16} className="text-blue-500" />
@@ -404,12 +432,10 @@ export default function Home() {
     {/* FOOTER / CONTACT */}
     <section className="bg-[#050505] px-6 py-24 relative overflow-hidden">
   
-      {/* Суптилен светлосен акцент во центарот */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150px h-75 bg-blue-600/5 blur-[120px] rounded-full pointer-events-none"></div>
 
       <div className="max-w-5xl mx-auto relative z-10">
         
-        {/* ГЛАВЕН ТЕКСТ - НАМАЛЕН И ПРОЧИСТЕН */}
         <div className="text-center space-y-6 mb-24">
           <div className="flex items-center justify-center gap-3 opacity-50">
             <div className="h-px w-8 bg-blue-500"></div>
@@ -422,10 +448,8 @@ export default function Home() {
           </h2>
         </div>
 
-        {/* КОНТАКТ И СОЦИЈАЛНИ МРЕЖИ - ХОРИЗОНТАЛЕН РАСПОРЕД */}
         <div className="grid md:grid-cols-2 gap-16 items-start border-t border-white/5 pt-16">
           
-          {/* Лева страна: Email */}
           <div className="space-y-4">
             <p className="text-[10px] uppercase tracking-[0.4em] text-gray-600 font-bold">Inquiries</p>
             <a 
@@ -437,7 +461,6 @@ export default function Home() {
             </a>
           </div>
 
-          {/* Десна страна: Мрежи и Локација */}
           <div className="grid grid-cols-2 gap-8">
             <div className="space-y-4">
               <p className="text-[10px] uppercase tracking-[0.4em] text-gray-600 font-bold">Socials</p>
