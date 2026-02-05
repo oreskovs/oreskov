@@ -142,8 +142,14 @@ export default function Home() {
             transition={{ delay: 0.5 }}
             className="flex justify-center gap-8"
           >
-            <button className="group relative px-8 py-4 overflow-hidden rounded-full bg-white text-black font-black text-[11px] uppercase tracking-widest hover:scale-105 transition-all">
-               View My Work
+            <button 
+              onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+              className="group relative px-8 py-4 overflow-hidden rounded-full bg-white text-black font-black text-[11px] uppercase tracking-widest hover:scale-105 transition-all"
+            >
+              <div className="absolute inset-0 bg-blue-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+              <span className="relative z-10 group-hover:text-white transition-colors duration-300">
+                View My Work
+              </span>
             </button>
           </motion.div>
         </div>
@@ -153,7 +159,7 @@ export default function Home() {
           <motion.div 
             animate={{ y: [0, -15, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-[35%] left-[8%] p-6 bg-[#0a0a0a]/40 backdrop-blur-xl border border-white/5 rounded-3xl w-56 rotate-[-6deg]"
+            className="absolute top-[35%] left-[8%] p-6 bg-[#0a0a0a]/40 backdrop-blur-xl border border-white/5 rounded-3xl w-56 rotate-6"
           >
             <Globe className="text-blue-500 mb-2" size={24} />
             <h3 className="font-bold text-xs text-white uppercase">Web Apps</h3>
@@ -162,7 +168,7 @@ export default function Home() {
           <motion.div 
              animate={{ y: [0, 15, 0] }}
              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-             className="absolute top-[40%] right-[8%] p-6 bg-[#0a0a0a]/40 backdrop-blur-xl border border-white/5 rounded-3xl w-56 rotate-[6deg]"
+             className="absolute top-[40%] right-[8%] p-6 bg-[#0a0a0a]/40 backdrop-blur-xl border border-white/5 rounded-3xl w-56 rotate-6"
           >
             <Smartphone className="text-blue-500 mb-2" size={24} />
             <h3 className="font-bold text-xs text-white uppercase">Mobile Apps</h3>
@@ -244,7 +250,7 @@ export default function Home() {
           {/* Header */}
           <div className="mb-24">
             <h2 className="text-[10px] uppercase tracking-[0.5em] text-blue-600 font-black mb-4">Works</h2>
-            <h3 className="text-5xl md:text-7xl font-bold tracking-tighter">Selected <span className="italic">Projects</span></h3>
+            <h3 className="text-5xl md:text-7xl font-bold tracking-tighter"><span className="italic">Projects</span></h3>
           </div>
 
           {/* List Container */}
