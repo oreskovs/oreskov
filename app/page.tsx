@@ -1,7 +1,28 @@
 "use client";
 import { Github, Mail, Linkedin, Instagram, MapPin, ArrowUpRight, ChevronDown, Code2, Smartphone, Terminal, Globe } from "lucide-react";
+import { motion,useMotionValue } from "framer-motion";
+import { useEffect } from "react";
+import { Typewriter } from "react-simple-typewriter";
 
 export default function Home() {
+
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [mouseX, mouseY]);
+
+  const fadeInUp = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6 }
+  };
 
   const techStack = [
   { category: "Frontend", tools: ["HTML", "CSS", "JS", "React", "TailwindCSS"] },
@@ -53,148 +74,102 @@ export default function Home() {
   <main className="min-h-screen bg-[#050505] text-white font-sans selection:bg-blue-500/30">
 
     {/* HERO SECTION */}
-    <section className="min-h-screen w-full relative flex flex-col items-center justify-center bg-[#050505] overflow-hidden px-6 py-20">
-  
-      {/* TOP NAV BAR - Минималистички */}
-      <nav className="absolute top-6 w-[calc(100%-3rem)] max-w-7xl mx-auto z-50">
-        <div className="bg-[#0a0a0a]/40 backdrop-blur-md border border-white/5 px-6 py-4 rounded-3xl flex justify-between items-center shadow-2xl">
-          
-          {/* Лого и Статус */}
-          <div className="flex items-center gap-4">
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-linear-to-r from-blue-600 to-cyan-500 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-            </div>
-            
+    <section className="min-h-screen w-full relative flex flex-col items-center justify-center overflow-hidden px-6">
+        
+        {/* SPOTLIGHT BACKGROUND */}
+        <motion.div
+          className="pointer-events-none absolute inset-0 z-0 opacity-30"
+          style={{
+            background: `radial-gradient(600px circle at ${mouseX}px ${mouseY}px, rgba(29, 78, 216, 0.15), transparent 80%)`,
+          }}
+        />
+
+        {/* NAV BAR */}
+        <nav className="absolute top-6 w-full max-w-7xl px-4 z-50">
+          <div className="bg-[#0a0a0a]/60 backdrop-blur-xl border border-white/5 px-6 py-4 rounded-3xl flex justify-between items-center shadow-2xl">
             <div className="flex flex-col">
-              <span className="text-xs font-black tracking-[0.2em] text-white uppercase leading-none">
-                Stojance Oreskov
-              </span>
+              <span className="text-xs font-black tracking-[0.2em] text-white uppercase">Stojance Oreskov</span>
               <div className="flex items-center gap-1.5 mt-1.5">
                 <span className="relative flex h-1.5 w-1.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
                 </span>
-                <span className="text-[9px] text-gray-500 font-bold uppercase tracking-widest">
-                  Available for hire
-                </span>
+                <span className="text-[9px] text-gray-500 font-bold uppercase tracking-widest">Available for hire</span>
               </div>
             </div>
-          </div>
-
-          {/* Социјални Мрежи & Контакт */}
-          <div className="flex items-center gap-3 sm:gap-6">
-            <div className="items-center gap-4 border-r border-white/10 pr-6 mr-2 hidden md:flex">
-              <a href="https://github.com/oreskovs" target="_blank" className="text-gray-400 hover:text-white transition-all hover:scale-110">
-                <Github size={18} />
-              </a>
-              <a href="https://linkedin.com/in/stojance-oreskov-b2a165356/" target="_blank" className="text-gray-400 hover:text-white transition-all hover:scale-110">
-                <Linkedin size={18} />
-              </a>
+            <div className="flex items-center gap-4">
+              <a href="https://github.com/oreskovs" target="_blank" className="text-gray-400 hover:text-white transition-transform hover:scale-110"><Github size={18} /></a>
+              <a href="https://linkedin.com/in/stojance-oreskov-b2a165356/" target="_blank" className="text-gray-400 hover:text-white transition-transform hover:scale-110"><Linkedin size={18} /></a>
+              <a href="mailto:oreskov.stojance1@gmail.com" className="ml-2 px-4 py-2 rounded-xl bg-white text-black text-[10px] font-black uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all">Contact</a>
             </div>
-            
-            <a 
-              href="mailto:oreskov.stojance1@gmail.com" 
-              className="px-5 py-2 rounded-xl bg-white text-black text-[10px] font-black uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all duration-300"
-            >
-              Contact Me
-            </a>
           </div>
-        </div>
-      </nav>
+        </nav>
 
-      <div className="relative z-10 max-w-4xl w-full text-center space-y-10">
-  
-  
-      <div className="flex justify-center">
-        <div className="inline-flex items-center gap-3 px-3 py-1 rounded-full border border-white/5 bg-[#0a0a0a] shadow-2xl">
-          <span className="flex h-2 w-2 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.8)]"></span>
-          <span className="text-[10px] uppercase tracking-[0.3em] text-gray-400 font-bold">
-            Next-Gen Fullstack Solutions
-          </span>
-        </div>
-      </div>
+        {/* HERO CONTENT */}
+        <div className="relative z-10 max-w-4xl w-full text-center space-y-12">
+          
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <div className="inline-flex items-center gap-3 px-3 py-1 rounded-full border border-white/5 bg-[#0a0a0a]">
+              <span className="flex h-2 w-2 rounded-full bg-blue-500"></span>
+              <span className="text-[10px] uppercase tracking-[0.3em] text-gray-400 font-bold">Innovation in Code</span>
+            </div>
+          </motion.div>
 
-      <div className="space-y-4">
-        <h1 className="text-4xl md:text-6xl lg:text-[80px] font-bold tracking-[-0.05em] leading-[1.1] text-white">
-          Web & <span className="italic font-serif text-blue-500">Mobile</span> <br />
-          Developer<span className="text-blue-600">.</span>
-        </h1>
-        
-        <div className="h-1 w-20 bg-blue-600 mx-auto rounded-full opacity-50"></div>
-      </div>
-
-      {/* Опис - Пократок и попрецизен */}
-      <p className="text-base md:text-lg text-gray-400 max-w-xl mx-auto font-light leading-relaxed tracking-wide">
-        I bridge the gap between complex <span className="text-white border-b border-gray-800">backend logic</span> <br className="hidden md:block" /> 
-        and high-end <span className="text-white italic">user experiences.</span>
-      </p>
-
-      {/* Копчиња - Поелегантни димензии */}
-      <div className="flex flex-wrap items-center justify-center gap-8 pt-6">
-        <button 
-          onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-          className="group relative px-8 py-3.5 overflow-hidden rounded-full bg-white text-black transition-all duration-300 hover:scale-105"
-        >
-          <div className="absolute inset-0 bg-blue-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-          <span className="relative z-10 text-[11px] font-black uppercase tracking-widest group-hover:text-white transition-colors duration-300">
-            Explore Works
-          </span>
-        </button>
-
-        <a 
-          href="mailto:oreskov.stojance1@gmail.com" 
-          className="group flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.2em] text-gray-500 hover:text-white transition-all"
-        >
-          Let's Talk 
-          <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:border-blue-600 group-hover:bg-blue-600/5 transition-all">
-            <ArrowUpRight size={14} className="group-hover:text-blue-500 transition-colors" />
+          <div className="space-y-6">
+            <h1 className="text-5xl md:text-8xl font-bold tracking-tighter leading-[0.9] text-white">
+              <span className="text-blue-500">
+                <Typewriter
+                  words={['Web', 'Mobile', 'Fullstack', 'Next-Gen']}
+                  loop={0} // 0 значи бесконечно
+                  cursor
+                  cursorStyle="_"
+                  typeSpeed={70}
+                  deleteSpeed={50}
+                  delaySpeed={2000}
+                />
+              </span>
+              <br />
+              Developer<span className="text-blue-600">.</span>
+            </h1>
+            <p className="text-gray-400 text-lg md:text-xl max-w-xl mx-auto font-light leading-relaxed">
+              I architect high-performance digital solutions with <span className="text-white italic">Next.js</span> and <span className="text-white italic">Flutter</span>.
+            </p>
           </div>
-        </a>
-      </div>
-      </div>
 
-      {/* FLOATING CAPABILITIES - Расфрлани лево и десно на десктоп */}
-      <div className="hidden lg:block">
-        {/* Лева картичка */}
-        <div className="absolute top-1/2 left-[10%] -translate-y-1/2 p-6 bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/5 rounded-3xl w-64 rotate-[-5deg] hover:rotate-0 transition-all duration-500 shadow-2xl group">
-          <Globe className="text-blue-500 mb-4 group-hover:scale-110 transition-transform" size={32} />
-          <h3 className="font-bold text-lg mb-2">Web Systems</h3>
-          <p className="text-xs text-gray-500 leading-relaxed font-light">
-            Developing complex dashboards and high-traffic web applications with <span className="text-blue-400">Next.js.</span>
-          </p>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="flex justify-center gap-8"
+          >
+            <button className="group relative px-8 py-4 overflow-hidden rounded-full bg-white text-black font-black text-[11px] uppercase tracking-widest hover:scale-105 transition-all">
+               View My Work
+            </button>
+          </motion.div>
         </div>
 
-        {/* Десна картичка */}
-        <div className="absolute top-1/2 right-[10%] -translate-y-1/2 p-6 bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/5 rounded-3xl w-64 rotate-[5deg] hover:rotate-0 transition-all duration-500 shadow-2xl group">
-          <Smartphone className="text-blue-500 mb-4 group-hover:scale-110 transition-transform" size={32} />
-          <h3 className="font-bold text-lg mb-2">Mobile Apps</h3>
-          <p className="text-xs text-gray-500 leading-relaxed font-light">
-            Building native-feel experiences for iOS and Android using the power of <span className="text-blue-400">Flutter.</span>
-          </p>
-        </div>
-      </div>
+        {/* FLOATING CARDS */}
+        <div className="hidden lg:block">
+          <motion.div 
+            animate={{ y: [0, -15, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-[35%] left-[8%] p-6 bg-[#0a0a0a]/40 backdrop-blur-xl border border-white/5 rounded-3xl w-56 rotate-[-6deg]"
+          >
+            <Globe className="text-blue-500 mb-2" size={24} />
+            <h3 className="font-bold text-xs text-white uppercase">Web Apps</h3>
+          </motion.div>
 
-      {/* БРОЈКИ / СТАТИСТИКА - Најдолу */}
-      <div className="absolute bottom-10 w-full max-w-7xl px-8 flex justify-between items-end border-t border-white/5 pt-10">
-        <div className="flex gap-12">
-          <div>
-            <p className="text-2xl font-black">10+</p>
-            <p className="text-[10px] text-gray-600 uppercase tracking-widest">Tech Stack</p>
-          </div>
-          <div>
-            <p className="text-2xl font-black tracking-tighter uppercase">MKD</p>
-            <p className="text-[10px] text-gray-600 uppercase tracking-widest">Location</p>
-          </div>
+          <motion.div 
+             animate={{ y: [0, 15, 0] }}
+             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+             className="absolute top-[40%] right-[8%] p-6 bg-[#0a0a0a]/40 backdrop-blur-xl border border-white/5 rounded-3xl w-56 rotate-[6deg]"
+          >
+            <Smartphone className="text-blue-500 mb-2" size={24} />
+            <h3 className="font-bold text-xs text-white uppercase">Mobile Apps</h3>
+          </motion.div>
         </div>
-        
-        <div className="flex flex-col items-end gap-2 group cursor-pointer">
-          <span className="text-[10px] uppercase tracking-[0.5em] text-gray-600 group-hover:text-blue-500 transition-colors font-bold">Scroll</span>
-          <div className="w-12 h-0.5 bg-gray-800 relative overflow-hidden">
-            <div className="absolute inset-0 bg-blue-600 -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
-          </div>
-        </div>
-      </div>
-    </section>
+
+      </section>
 
     {/* TECH STACK - SECTION */}
     <section className="py-24 overflow-hidden bg-[#050505] border-y border-gray-900 relative">
