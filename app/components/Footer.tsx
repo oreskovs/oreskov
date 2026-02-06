@@ -24,13 +24,12 @@ export default function Footer() {
     <footer className="bg-[#050505] pt-40 pb-12 px-8 overflow-hidden relative">
       <div className="max-w-450 mx-auto">
         
-        {/* Top Section: Large Kinetic Text */}
         <div className="relative group">
           <motion.h2 
             initial={{ y: 120, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[18vw] leading-[0.75] font-black tracking-tighter text-white/2 uppercase select-none group-hover:text-blue-600/4 transition-colors duration-700"
+            className="text-[18vw] leading-[0.75] font-black tracking-tighter text-white/2 uppercase select-none group-hover:text-blue-600/ transition-colors duration-700"
           >
             Contact
           </motion.h2>
@@ -63,10 +62,8 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Section: Metadata & Info */}
         <div className="mt-40 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-10">
           
-          {/* Local Time & Location */}
           <div className="flex gap-16">
             <div className="space-y-1">
               <p className="text-[10px] text-gray-600 uppercase tracking-widest">Local Time</p>
@@ -82,7 +79,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Social Archives */}
           <div className="flex gap-8 items-center">
             {['LinkedIn', 'GitHub', 'CV'].map((link) => (
               <a 
@@ -96,7 +92,6 @@ export default function Footer() {
             ))}
           </div>
 
-          {/* Copyright */}
           <div className="text-right">
             <p className="text-[10px] text-gray-700 uppercase tracking-widest">
               © 2026 Stojance Oreskov <br />
@@ -107,7 +102,6 @@ export default function Footer() {
         </div>
       </div>
       
-      {/* Subtle corner accent */}
       <div className="absolute bottom-0 right-0 w-32 h-32 bg-blue-600/5 blur-[80px] rounded-full pointer-events-none" />
     </footer>
   );
