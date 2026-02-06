@@ -40,7 +40,6 @@ export default function Projects() {
   return (
     <section id="projects" className="py-40 bg-[#050505] px-6 md:px-24">
       <div className="max-w-350 mx-auto">
-        {/* Header - Minimalist */}
         <div className="mb-32">
           <motion.p 
             initial={{ opacity: 0 }}
@@ -54,7 +53,6 @@ export default function Projects() {
           </h2>
         </div>
 
-        {/* Interactive List */}
         <div className="flex flex-col border-t border-white/10">
           {projects.map((project, index) => (
             <motion.a
@@ -65,8 +63,7 @@ export default function Projects() {
               onMouseLeave={() => setHoveredIndex(null)}
               className="group relative py-12 border-b border-white/10 flex flex-col md:flex-row md:items-center justify-between transition-all duration-500"
             >
-              {/* background hover effect */}
-              <div className="absolute inset-0 bg-blue-600/0 group-hover:bg-blue-600/[0.02] transition-colors duration-500 pointer-events-none" />
+              <div className="absolute inset-0 bg-blue-600/0 group-hover:bg-blue-600/2 transition-colors duration-500 pointer-events-none" />
 
               <div className="relative z-10 flex items-center gap-8">
                 <span className="text-xs font-mono text-gray-600 group-hover:text-blue-500 transition-colors">
@@ -91,7 +88,6 @@ export default function Projects() {
                 </div>
               </div>
 
-              {/* Small dot that follows or appears */}
               {hoveredIndex === index && (
                 <motion.div 
                   layoutId="dot"
@@ -104,7 +100,6 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* Footer link to GitHub */}
         <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

@@ -19,7 +19,6 @@ export default function Hero() {
 
   return (
     <section className="min-h-screen w-full relative flex flex-col items-center justify-center overflow-hidden px-6">
-      {/* Background Gradient Effect */}
       <motion.div
         className="pointer-events-none absolute inset-0 z-0 opacity-30"
         style={{
@@ -27,7 +26,6 @@ export default function Hero() {
         }}
       />
 
-      {/* Floating Code Decorations (Left & Right) */}
       <div className="hidden lg:block">
         <motion.div 
           animate={{ y: [0, -10, 0], opacity: [0.4, 0.7, 0.4] }}
@@ -59,11 +57,9 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Navigation - FIXED WIDTHS HERE */}
-      <nav className="fixed top-0 left-0 w-full px-8 py-10 z-[100] pointer-events-none">
-        <div className="max-w-[1800px] mx-auto flex justify-between items-start pointer-events-auto w-full">
+      <nav className="fixed top-0 left-0 w-full px-8 py-10 z-100 pointer-events-none">
+        <div className="max-w-450 mx-auto flex justify-between items-start pointer-events-auto w-full">
           
-          {/* Left Side: Name & Status */}
           <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} className="flex flex-col gap-4">
             <div className="group flex items-center gap-4 cursor-pointer" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
               <div className="flex flex-col">
@@ -77,7 +73,6 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Right Side: Socials & Menu */}
           <motion.div initial={{ x: 20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} className="flex flex-col items-end gap-6">
             <div className="bg-black/40 backdrop-blur-2xl border border-white/10 p-2 rounded-2xl flex flex-col gap-1 shadow-2xl">
               {[{ id: 'projects', icon: <Code2 size={16} /> }, { id: 'contact', icon: <Mail size={16} /> }].map((item) => (
@@ -94,7 +89,7 @@ export default function Hero() {
               ))}
             </div>
             <div className="flex flex-col gap-5 pr-3 items-center">
-              <div className="h-12 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent"></div>
+              <div className="h-12 w-px bg-linear-to-b from-transparent via-white/20 to-transparent"></div>
               <a href="https://github.com/oreskovs" target="_blank" className="text-gray-500 hover:text-blue-500 transition-all hover:scale-110"><Github size={18} /></a>
               <a href="https://linkedin.com/in/stojance-oreskov-b2a165356/" target="_blank" className="text-gray-500 hover:text-blue-500 transition-all hover:scale-110"><Linkedin size={18} /></a>
             </div>
@@ -102,7 +97,6 @@ export default function Hero() {
         </div>
       </nav>
 
-      {/* Hero Content */}
       <div className="relative z-10 max-w-4xl w-full text-center space-y-12">
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           <div className="inline-flex items-center gap-3 px-3 py-1 rounded-full border border-white/5 bg-[#0a0a0a]">

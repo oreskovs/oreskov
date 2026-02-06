@@ -22,7 +22,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#050505] pt-40 pb-12 px-8 overflow-hidden relative">
-      <div className="max-w-[1800px] mx-auto">
+      <div className="max-w-450 mx-auto">
         
         {/* Top Section: Large Kinetic Text */}
         <div className="relative group">
@@ -30,7 +30,7 @@ export default function Footer() {
             initial={{ y: 120, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[18vw] leading-[0.75] font-black tracking-tighter text-white/[0.02] uppercase select-none group-hover:text-blue-600/[0.04] transition-colors duration-700"
+            className="text-[18vw] leading-[0.75] font-black tracking-tighter text-white/2 uppercase select-none group-hover:text-blue-600/4 transition-colors duration-700"
           >
             Contact
           </motion.h2>
