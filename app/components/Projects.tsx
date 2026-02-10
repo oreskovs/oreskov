@@ -6,10 +6,10 @@ import { useState } from "react";
 const projects = [
   {
     id: "01",
-    title: "Meals App",
+    title: "Crypto Tracker",
     category: "Mobile Development",
     tech: "Flutter / Dart",
-    link: "https://github.com/oreskovs/Dart-Flutter-Projects/tree/main/MealsApp%20Updated%20Version",
+    link: "https://github.com/oreskovs/Dart-Flutter-Projects/tree/main/Crypto%20Tracker%20App",
   },
   {
     id: "02",
@@ -31,7 +31,7 @@ const projects = [
     category: "Frontend Dev",
     tech: "React / API",
     link: "https://github.com/oreskovs/React-Projects",
-  }
+  },
 ];
 
 export default function Projects() {
@@ -41,7 +41,7 @@ export default function Projects() {
     <section id="projects" className="py-40 bg-[#050505] px-6 md:px-24">
       <div className="max-w-350 mx-auto">
         <div className="mb-32">
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             className="text-blue-500 font-mono text-[10px] tracking-[0.5em] uppercase mb-4"
@@ -49,7 +49,8 @@ export default function Projects() {
             / Selected Works
           </motion.p>
           <h2 className="text-4xl md:text-6xl font-light tracking-tight text-white/90">
-            Building digital <span className="italic text-gray-500 font-serif">ecosystems</span>.
+            Building digital{" "}
+            <span className="italic text-gray-500 font-serif">ecosystems</span>.
           </h2>
         </div>
 
@@ -84,12 +85,15 @@ export default function Projects() {
                   </p>
                 </div>
                 <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:border-white transition-all duration-500">
-                  <ArrowUpRight size={20} className="text-white group-hover:text-black transition-colors" />
+                  <ArrowUpRight
+                    size={20}
+                    className="text-white group-hover:text-black transition-colors"
+                  />
                 </div>
               </div>
 
               {hoveredIndex === index && (
-                <motion.div 
+                <motion.div
                   layoutId="dot"
                   className="absolute left-0 w-1 h-12 bg-blue-600"
                   initial={{ opacity: 0 }}
@@ -100,13 +104,13 @@ export default function Projects() {
           ))}
         </div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           className="mt-20 flex justify-center"
         >
-          <a 
-            href="https://github.com/oreskovs" 
+          <a
+            href="https://github.com/oreskovs"
             target="_blank"
             className="text-[10px] uppercase tracking-[0.3em] text-gray-500 hover:text-white transition-colors border-b border-gray-800 pb-2"
           >
