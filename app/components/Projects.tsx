@@ -26,11 +26,11 @@ const projects = [
     link: "https://github.com/oreskovs/React-Projects/tree/main/assembly_endgame",
   },
   {
-    id: "04",
-    title: "React Projects",
-    category: "Frontend Dev",
-    tech: "React / API",
-    link: "https://github.com/oreskovs/React-Projects",
+    id: "05",
+    title: "Gadget Store App - MVP",
+    category: "Mobile Development",
+    tech: "Flutter / Dart",
+    link: "https://github.com/oreskovs/Dart-Flutter-Projects/tree/main/gadgets_store",
   },
 ];
 
