@@ -27,10 +27,10 @@ const projects = [
   },
   {
     id: "05",
-    title: "Gadget Store App - MVP",
+    title: "ZenStore Mobile",
     category: "Mobile Development",
     tech: "Flutter / Dart",
-    link: "https://github.com/oreskovs/Dart-Flutter-Projects/tree/main/gadgets_store",
+    link: "https://github.com/oreskovs/Dart-Flutter-Projects/tree/main/ZenStore%20Mobile",
   },
 ];
 
