@@ -6,24 +6,24 @@ import { useState } from "react";
 const projects = [
   {
     id: "01",
-    title: "Crypto Tracker",
+    title: "Strive",
     category: "Mobile Development",
     tech: "Flutter / Dart",
-    link: "https://github.com/oreskovs/Dart-Flutter-Projects/tree/main/Crypto%20Tracker%20App",
+    link: "https://github.com/oreskovs/strive-app",
   },
   {
     id: "02",
-    title: "Inventory System",
+    title: "Syncro Hub",
     category: "Software Logic",
-    tech: "C# / .NET",
-    link: "https://github.com/oreskovs/C-Sharp/tree/main/ProductsSortingApp",
+    tech: "ReactJS",
+    link: "https://syncrohub.vercel.app/",
   },
   {
     id: "03",
-    title: "Assembly Endgame UI",
+    title: "Vault Keep - Crypto Asset Tracker",
     category: "Web Interaction",
-    tech: "React / GSAP",
-    link: "https://github.com/oreskovs/React-Projects/tree/main/assembly_endgame",
+    tech: "HTML, CSS, JS",
+    link: "https://github.com/oreskovs/VaultKeep-Crypto-Asset-Tracker",
   },
   {
     id: "05",
