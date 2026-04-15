@@ -99,7 +99,11 @@ export default function Footer() {
                 href: "https://github.com/oreskovs",
                 download: false,
               },
-              { name: "CV", href: "/Stojance Oreskov CV.pdf", download: true },
+              {
+                name: "CV",
+                href: "StojanceOreskovCV.pdf",
+                download: true,
+              },
             ].map((link) => (
               <a
                 key={link.name}
