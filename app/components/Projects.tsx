@@ -27,10 +27,10 @@ const projects = [
   },
   {
     id: "05",
-    title: "ZenStore Mobile",
+    title: "AquaPulse",
     category: "Mobile Development",
     tech: "Flutter / Dart",
-    link: "https://github.com/oreskovs/Dart-Flutter-Projects/tree/main/ZenStore%20Mobile",
+    link: "https://github.com/oreskovs/AquaPulse",
   },
 ];
 
