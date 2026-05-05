@@ -20,10 +20,10 @@ const projects = [
   },
   {
     id: "03",
-    title: "Vault Keep - Crypto Asset Tracker",
-    category: "Web Interaction",
-    tech: "HTML, CSS, JS",
-    link: "https://github.com/oreskovs/VaultKeep-Crypto-Asset-Tracker",
+    title: "Restaurant Fantazi",
+    category: "Web Development",
+    tech: "NextJS, React, TailwindCSS,",
+    link: "https://github.com/oreskovs/restoran-fantazi",
   },
   {
     id: "05",
